@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
+    <!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
+    <meta name="theme-color" content="#584cd7">
+    <meta name="color-scheme" content="dark light">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable"  content= "yes">
+
+    <title>ToneFlex</title>
+    <meta name="title" content="ToneFlex">
+    <meta name="description" content="A large language model application designed for research.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <!-- <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "18066608-9933-46fd-aecb-9f8b9c12bfc0",
+        });
+      });
+    </script> -->
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <style>
+       html, body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+        background-color: #584cd7;
+      }
+
+      .splash-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #584cd7;
+        z-index: 9999;
+        opacity: 0;
+        transition: opacity 0.4s ease-out;
+
+      }
+
+      .splash-screen.ready {
+        opacity: 1;
+
+      }
+
+      .splash-screen.exit {
+        opacity: 0;
+
+      }
+      
+      .splash-screen .logo {
+        width: 200px;
+        height: 200px;
+
+      }
+
+      body.splash-loading > *:not(.splash-screen) {
+        visibility: hidden;
+
+      }
+
+    </style>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <link type="text/css" rel="stylesheet" href="./style.css">
+
+  </head>
+
+  <body class="orient splash-loading">
+    <div class="splash-screen">
+      <div class="logo-container">
+        <img class="logo" src="./pulsar-logo.jpeg">
+
+      </div>
+
+    </div>
+
+    <div class="install-pwa-message-container">
+      <div class="install-pwa-message-prompt">
+        <p class="install-pwa-message">
+          To Install<br><br>
+          For iOS:<br>
+          1. Press the share button<br>
+          2. Select "Add to Home Screen"<br>
+          3. Press the "Add" button<br><br>
+          For Android:<br>
+          1. Press the 3 dots<br>
+          2. Select "Add to Home screen"<br>
+          3. Press the "Install" button
+        </p>
+
+      </div>
+
+      <div class="only-on-mobile">
+        <p class="only-on-mobile-message">
+          This app is only available on mobile devices
+
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="login-signup-container">
+      <div class="title-container">
+        <div class="title-box">
+          <p class="title">
+            toneflex
+
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="login-signup-button-container">
+        <div class="login-button-container">
+          <button class="login-button">
+            Login
+            
+          </button>
+
+        </div>
+
+        <div class="signup-button-container">
+          <button class="signup-button">
+            Register
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="login-container">
+      <div class="back-button-container">
+        <button class="back-button">
+          <span class="material-symbols-outlined">
+            chevron_left
+
+          </span>
+
+        </button>
+
+      </div>
+
+      <div class="login-text-container">
+        <p class="login-text">
+          Welcome back!
+
+        </p>
+
+      </div>
+
+      <div class="email-password-fields-container">
+        <div class="login-error-message-container">
+          <p>Incorrect email/password</p>
+
+        </div>
+
+        <div class="email-field-container">
+          <div class="fake-email-field">Enter your email</div>
+
+          <input class="email-field" placeholder="Enter your email">
+
+        </div>
+        
+        <div class="password-field-box">
+          <div class="password-field-container">
+            <div class="fake-password-field">Enter your password</div>
+
+            <input type="password" class="password-field" placeholder="Enter your password">
+
+          </div>
+
+          <div class="forgot-password-container">
+            <p class="forgot-password-text">
+              Forgot Password?
+
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="log-button-container">
+        <button class="log-button">
+          Login
+
+        </button>
+
+      </div>
+      
+    </div>
+
+    <div class="reset-password-container">
+      <div class="reset-password-back-button-container">
+        <button class="reset-password-back-button">
+          <span class="material-symbols-outlined">
+            chevron_left
+
+          </span>
+
+        </button>
+
+      </div>
+
+      <div class="reset-password-field-container">
+        <div class="reset-password-error-message-container">
+          <p>A reset link has been sent if an account exists for this email<br>You may log in once you have reset your password</p>
+
+        </div>
+
+        <div class="fake-reset-password-field">Enter your email</div>
+
+        <input class="reset-password-field" placeholder="Enter your email">
+
+      </div>
+
+      <div class="reset-password-button-container">
+        <button class="reset-password-button">
+          Reset Password
+
+        </button>
+
+      </div>
+
+
+    </div>
+
+    <div class="signup-container">
+      <div class="back-button-container">
+        <button class="back-button">
+          <span class="material-symbols-outlined">
+            chevron_left
+
+          </span>
+
+        </button>
+
+      </div>
+
+      <div class="signup-text-container">
+        <p class="signup-text">
+          Hello! Register to get started.
+
+        </p>
+
+      </div>
+
+      <div class="email-password-username-fields-container">
+        <div class="validation-container">
+          <div class="validation-text"></div>
+
+        </div>
+
+        <div class="username-field-container">
+          <div class="fake-username-field">Username</div>
+
+          <input class="username-field" placeholder="Username">
+
+        </div>
+
+        <div class="em-field-container">
+          <div class="fake-em-field">Email</div>
+
+          <input class="em-field" placeholder="Email">
+
+        </div>
+
+        <div class="pass-field-container">
+          <div class="fake-pass-field">Password</div>
+
+          <input type="password" class="pass-field" placeholder="Password">
+
+        </div>
+
+        <div class="confirm-password-field-container">
+          <div class="fake-confirm-password-field">Confirm password</div>
+
+          <input type="password" class="confirm-password-field" placeholder="Confirm password">
+
+        </div>
+
+      </div>
+
+      <div class="sign-button-container">
+        <button class="sign-button">
+          Register
+
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="app-container">
+      <div class="top-bar">
+        <span class="chat-history-button material-symbols-outlined">
+          sort
+
+        </span>
+
+        <p>
+          toneflex
+
+        </p>
+
+        <span class="account-logout-button material-symbols-outlined">
+          account_circle
+
+        </span>
+
+
+      </div>
+
+      <div class="message-area">
+
+      </div>
+
+      <div class="bottom-bar">
+        <div class="input-container">
+          <p class="fake-user-input">Ask ToneFlex</p>
+          <textarea placeholder="Ask ToneFlex" class="user-input" rows="1"></textarea>
+
+        </div>
+
+        <div class="stop-button-container">
+          <button class="stop-button">
+            <span class="material-symbols-outlined">
+              pause_circle
+            </span>
+
+          </button>
+
+        </div>
+
+        <div class="input-button-container">
+          <button class="input-button">
+            <span class="material-symbols-outlined">
+              play_circle
+            </span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="user-chat-history-container">
+        <div class="top-chat-history-container">
+          <button class="close-chat-history-button">
+            <span class="material-symbols-outlined">
+              close
+
+            </span>
+
+          </button>
+
+          <button class="new-chat-button">
+            <span class="material-symbols-outlined">
+              add
+            
+            </span>
+
+          </button>
+        
+        </div>
+
+        <div class="chat-history-prompts-container"></div>
+        
+
+      </div>
+
+      <div class="profile-info-logout-container">
+        <button class="close-profile-logout-button">
+          <span class="material-symbols-outlined">
+            close
+
+          </span>
+
+        </button>
+
+        <div class="profile-logout-username">
+          <p class="profile-logout-username-text">
+            michael
+          </p>
+
+        </div>
+
+        <div class="logout-button-container">
+          <button class="logout-button">
+            Logout
+          </button>
+
+        </div>
+
+        <div class="open-question-button-container">
+          <button class="open-question-button">
+            Open Questionnaire
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <script>
+      async function initialize() {
+        await new Promise(resolve => window.addEventListener('load', resolve));
+
+        const splashScreen = document.querySelector('.splash-screen');
+        const body = document.body;
+
+        setTimeout(() => {
+          splashScreen.classList.add('ready');
+        }, 120); 
+
+        const minSplashTime = 1800;
+        await new Promise(resolve => setTimeout(resolve, minSplashTime));
+
+        if (splashScreen) {
+          splashScreen.classList.add('exit');
+
+          await new Promise(resolve => setTimeout(resolve, 400));
+          
+          splashScreen.remove();
+
+        }
+
+        body.classList.remove('splash-loading');
+        window.dispatchEvent(new Event('splashScreenComplete'));
+      }
+
+      initialize();
+      
+      function update_orientation() {
+        let body = document.querySelector('body');
+        let angle = window.orientation;
+        let mql = window.matchMedia("(orientation: landscape)");
+
+        if (angle === -90) {
+          body.style.setProperty('--rotate', '90deg');
+          body.style.setProperty('--translate', 'calc((100vh - 100vw) / 2), calc((100vh - 88.7vw) / 2)');
+        } else if (angle === 90) {
+          body.style.setProperty('--rotate', '-90deg');
+          body.style.setProperty('--translate', 'calc((100vw - 100vh) / 2), calc((100vw - 74vh) / 2)');
+        } else {
+          body.style.setProperty('--rotate', '0deg');
+          body.style.setProperty('--translate', '0');
+        }
+      }
+
+      
+      window.addEventListener('orientationchange', update_orientation, { passive: true });
+      window.addEventListener('resize', update_orientation, { passive: true });
+      update_orientation();
+
+    </script>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script type="text/javascript" src="./disable-zoom.js"></script>
+    <script type="module" src="./firebase-init.js"></script>
+    <script type="text/javascript" src="./login-signup-container.js"></script>
+    <script type="module" src="./install-pwa.js"></script>
+    <script type="module" src="./login-container.js"></script>
+    <script type="module" src="./reset-password-container.js"></script>
+    <script type="module" src="./signup-container.js"></script>
+    <script type="module" src="./app-container.js"></script>
+
+  </body>
+
+</html>
