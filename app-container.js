@@ -273,44 +273,44 @@ function stop_daily_check() {
 }
 
 
-async function send_user_notification(playerId) {
-  const response = await fetch("https://pulsar-welcome-message.pmnair04.workers.dev", {
-    method: "POST",
-    headers: { "Content-Type": "application/json; charset=utf-8" },
-    body: JSON.stringify({ playerId: playerId })
-  });
+// async function send_user_notification(playerId) {
+//   const response = await fetch("https://pulsar-welcome-message.pmnair04.workers.dev", {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json; charset=utf-8" },
+//     body: JSON.stringify({ playerId: playerId })
+//   });
 
-  if (!response.ok) {
-    console.error("Error sending notification:", await response.text());
-  } else {
-    console.log("Welcome notification sent ✅");
-  }
-}
+//   if (!response.ok) {
+//     console.error("Error sending notification:", await response.text());
+//   } else {
+//     console.log("Welcome notification sent ✅");
+//   }
+// }
 
-async function send_notification(count) {
-  const response = await fetch("https://onesignal.com/api/v1/notifications", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-      "Authorization": "Basic os_v2_app_dadgmcezgndp3lwlt6fzyev7ycmfjpdvsznupifwyew44owavmhrxkaudnex7lrcsxxpszvjdkzs3fmi6gxtbw2uukbb5jidq4o6poa"
-    },
-    body: JSON.stringify({
-      app_id: "18066608-9933-46fd-aecb-9f8b9c12bfc0",
-      filters: [
-        { field: "tag", key: "role", relation: "=", value: "admin" }
-      ],
-      headings: { en: "API Requests" },
-      contents: { en: `${count}/200` }
-    })
-  });
+// async function send_notification(count) {
+//   const response = await fetch("https://onesignal.com/api/v1/notifications", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json; charset=utf-8",
+//       "Authorization": "Basic os_v2_app_dadgmcezgndp3lwlt6fzyev7ycmfjpdvsznupifwyew44owavmhrxkaudnex7lrcsxxpszvjdkzs3fmi6gxtbw2uukbb5jidq4o6poa"
+//     },
+//     body: JSON.stringify({
+//       app_id: "18066608-9933-46fd-aecb-9f8b9c12bfc0",
+//       filters: [
+//         { field: "tag", key: "role", relation: "=", value: "admin" }
+//       ],
+//       headings: { en: "API Requests" },
+//       contents: { en: `${count}/200` }
+//     })
+//   });
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    console.error("Error sending notification:", errorText);
-  } else {
-    console.log("Notification sent successfully");
-  }
-}
+//   if (!response.ok) {
+//     const errorText = await response.text();
+//     console.error("Error sending notification:", errorText);
+//   } else {
+//     console.log("Notification sent successfully");
+//   }
+// }
 
 const get_pacific_time = () => {
   const formatter = new Intl.DateTimeFormat('en-CA', {
@@ -679,7 +679,7 @@ const generate_ai_response = async (ai_message, ai_is_done) => {
     await increment_rpd_counter();
 
   } else if (await get_rpd_count() === 200) {
-    await send_notification(await get_rpd_count());
+    // await send_notification(await get_rpd_count());
     await increment_rpd_counter();
 
   } else {
@@ -808,7 +808,7 @@ setPersistence(auth, browserLocalPersistence).then(() => {
 
               console.log("📤 Sending welcome notification to:", subscriptionId);
               try {
-                await send_user_notification(subscriptionId);
+                // await send_user_notification(subscriptionId);
                 await updateDoc(user_ref, { sent_welcome: true });
                 u_data.sent_welcome = true;
                 console.log("✅ Welcome notification sent successfully.");
