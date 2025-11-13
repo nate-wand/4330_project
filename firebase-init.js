@@ -6,13 +6,12 @@
   import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-messaging.js";
 
   const firebaseConfig = {
-    apiKey: "AIzaSyC4hqYqSmvbDDsDHKn6dBJLwMXcUw1xDKw",
-    authDomain: "pulsar-ai-1890e.firebaseapp.com",
-    projectId: "pulsar-ai-1890e",
-    storageBucket: "pulsar-ai-1890e.firebasestorage.app",
-    messagingSenderId: "767506424716",
-    appId: "1:767506424716:web:48a0fbdf100026edbaeca9",
-    measurementId: "G-LJG6V8PY44"
+    apiKey: "AIzaSyBm2y_zC7uxfhNRsK3atIadNypqo99mHww",
+    authDomain: "reza-3cd79.firebaseapp.com",
+    projectId: "reza-3cd79",
+    storageBucket: "reza-3cd79.firebasestorage.app",
+    messagingSenderId: "509482431903",
+    appId: "1:509482431903:web:8e4a2caa670e0c2b87f9aa"
   };
 
   const app = initializeApp(firebaseConfig);
