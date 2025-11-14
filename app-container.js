@@ -1246,6 +1246,7 @@ logout_button.addEventListener('click', async (e) => {
 
 });
 
+// Color change button logic -Nathan
   let selectedColor = 0;
   color_selector_button.addEventListener('click', async (e) => {
 
@@ -1286,5 +1287,6 @@ logout_button.addEventListener('click', async (e) => {
  
     change = true;
   })
+
 
 export { bottom_bar };
