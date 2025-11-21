@@ -655,9 +655,29 @@ const create_message = (type) => {
   let p = document.createElement('p');
   p.classList.add(`${type}-text`);
   div.appendChild(p);
+  /*--Changed by Jonathan */
+  // Copy button should ONLY be added to AI messages
+  if (type === "ai") {
+    let copyBtn = document.createElement('button');
+    copyBtn.classList.add('copy-btn');
+    copyBtn.textContent = "Copy";
+    // copy functionality
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(p.textContent)
+        .then(() => {
+          copyBtn.textContent = "Copied!";
+          setTimeout(() => copyBtn.textContent = "Copy", 1500);
+        })
+        .catch(err => {
+          console.error("Failed to copy:", err);
+        });
+    });
+    div.appendChild(copyBtn);
+  }
   return div;
-
 };
+
+
 
 const htmlToMarkdown = (html) => {
   if (!html) return '';
