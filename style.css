@@ -1,3 +1,10 @@
+/*Color variables -Nathan*/
+:root {
+  --bg-color: #584cd7;
+  --ai-text-color: #756aec;
+  --secondary-color: #594acc;
+}
+
 *,
 *::before,
 *::after {
@@ -88,7 +95,7 @@ html {
 }
 
 body {
-  background-color: #584cd7;
+  background-color: var(--bg-color);
 
 }
 
@@ -131,7 +138,7 @@ body.fading {
 }
 
 .install-pwa-message-container {
-  background-color:#584cd7;
+  background-color:var(--bg-color);
   width: 100%;
   height: 100%;
   display: none;
@@ -150,7 +157,7 @@ body.fading {
 }
 
 .only-on-mobile-message {
-  color: #584cd7;
+  color: var(--bg-color);
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
 
@@ -166,14 +173,14 @@ body.fading {
 }
 
 .install-pwa-message {
-  color: #584cd7;
+  color: var(--bg-color);
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
 
 }
 
 .login-signup-container {
-  background-color: #584cd7;
+  background-color: var(--bg-color);
   height: 100%;
   width: 100%;
   display: none;
@@ -235,7 +242,7 @@ body.fading {
 }
 
 .login-signup-button-container {
-  background-color: #584cd7;
+  background-color: var(--bg-color);
   width: 100%;
   height: 130px;
   display: flex;
@@ -260,7 +267,7 @@ body.fading {
   font-size: 18px;
   width: 100%;
   height: 100%;
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
@@ -278,12 +285,12 @@ body.fading {
   font-size: 18px;
   width: 100%;
   height: 100%;
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
 .login-container {
-  background-color: #584cd7;
+  background-color: var(--bg-color);
   height: 100%;
   width: 100%;
   display: none;
@@ -295,7 +302,7 @@ body.fading {
 }
 
 .back-button-container {
-  background-color: #584cd7;
+  background-color: var(--bg-color);
   height: 70px;
 
 }
@@ -316,7 +323,7 @@ body.fading {
 
 .signup-text-container,
 .login-text-container {
-  background-color: #584cd7;
+  background-color: var(--bg-color);
 
 }
 
@@ -330,7 +337,7 @@ body.fading {
 }
 
 .email-password-fields-container {
-  background-color: #584cd7;
+  background-color: var(--bg-color);
   display: flex;
   flex-direction: column;
   transform: translateY(0px);
@@ -341,7 +348,7 @@ body.fading {
 
 .login-error-message-container {
   position: absolute;
-  background-color:#584cd7;
+  background-color:var(--bg-color);
   top: -20%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -354,7 +361,7 @@ body.fading {
 
 .email-password-username-fields-container {
   will-change: transform;
-  background-color: #584cd7;
+  background-color: var(--bg-color);
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -369,7 +376,7 @@ body.fading {
   top: -40px;
   left: 50%;
   transform: translateX(-50%);
-  background-color:#584cd7;
+  background-color:var(--bg-color);
   padding: 5px;
   border-radius: 5px;
   display: none;
@@ -377,7 +384,7 @@ body.fading {
 }
 
 .validation-text {
-  background-color:#584cd7;
+  background-color:var(--bg-color);
   white-space: nowrap;
   font-size: 18px;
   color: #ffffff;
@@ -428,7 +435,7 @@ body.fading {
   z-index: 0;
   overflow: hidden;
   white-space: pre-wrap;
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
@@ -446,7 +453,7 @@ body.fading {
   border-radius: 0;
   opacity: 1;
   z-index: 1;
-  color: #584cd7
+  color: var(--bg-color)
 
 }
 
@@ -454,7 +461,7 @@ body.fading {
 .pass-field::placeholder,
 .confirm-password-field::placeholder,
 .em-field::placeholder {
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
@@ -468,12 +475,12 @@ body.fading {
   white-space: nowrap;
   border-radius: 0;
   z-index: 1;
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
 .email-field::placeholder {
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
@@ -491,14 +498,14 @@ body.fading {
   z-index: 0;
   overflow: hidden;
   white-space: pre-wrap;
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
 .password-field-box {
   display: flex;
   flex-direction: column;
-  background-color:#584cd7;
+  background-color:var(--bg-color);
   gap: 4px;
   flex-grow: none;
 
@@ -526,12 +533,12 @@ body.fading {
   white-space: nowrap;
   border-radius: 0;
   z-index: 1;
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
 .password-field::placeholder {
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
@@ -550,12 +557,12 @@ body.fading {
   overflow: hidden;
   pointer-events: none;
   white-space: pre-wrap;
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
 .forgot-password-container {
-  background-color:#584cd7;
+  background-color:var(--bg-color);
   height: 18px;
   display: flex;
   justify-content: end;
@@ -573,7 +580,7 @@ body.fading {
 }
 
 .reset-password-container {
-  background-color: #584cd7;
+  background-color: var(--bg-color);
   height: 100%;
   width: 100%;
   display: none;
@@ -585,7 +592,7 @@ body.fading {
 }
 
 .reset-password-back-button-container {
-  background-color: #584cd7;
+  background-color: var(--bg-color);
   height: 70px;
 
 }
@@ -593,7 +600,7 @@ body.fading {
 .reset-password-back-button {
   height: 60px;
   width: 60px;
-  background-color: #584cd7;
+  background-color: var(--bg-color);
   border-radius: 10px;
 
 }
@@ -618,7 +625,7 @@ body.fading {
 
 .reset-password-error-message-container {
   position: absolute;
-  background-color:#584cd7;
+  background-color:var(--bg-color);
   top: -38%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -641,12 +648,12 @@ body.fading {
   white-space: nowrap;
   border-radius: 0;
   z-index: 1;
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
 .reset-password-field::placeholder {
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
@@ -664,12 +671,12 @@ body.fading {
   z-index: 0;
   overflow: hidden;
   white-space: pre-wrap;
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
 .reset-password-button-container {
-  background-color: #584cd7;
+  background-color: var(--bg-color);
   height: 60px;
 
 }
@@ -683,13 +690,13 @@ body.fading {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
 .sign-button-container,
 .log-button-container {
-  background-color: #584cd7;
+  background-color: var(--bg-color);
   height: 60px;
 
 }
@@ -704,12 +711,12 @@ body.fading {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
 .signup-container {
-  background-color: #584cd7;
+  background-color: var(--bg-color);
   height: 100%;
   width: 100%;
   display: none;
@@ -724,7 +731,7 @@ body.fading {
 }
 
 .app-container {
-  background-color: #584cd7;
+  background-color: var(--bg-color);
   height: 100%;
   width: 100%;
   font-family: 'Roboto', sans-serif;
@@ -757,7 +764,7 @@ body.fading {
 }
 
 .notification-soft-prompt-container {
-  background-color:#584cd7;
+  background-color:var(--bg-color);
   position: absolute;
   top: 44%;
   left: 50%;
@@ -814,14 +821,14 @@ body.fading {
   background-color: #ffffff;
   width: 100%;
   padding: 7px 0px;
-  color: #584cd7;
+  color: var(--bg-color);
   border-radius: 3px;
 
 }
 
 .top-bar {
   will-change: top;
-  background-color: #584cd7;
+  background-color: var(--bg-color);
   width: 100%;
   display: flex;
   position: fixed;
@@ -843,7 +850,7 @@ body.fading {
 
 .message-area {
   will-change: top;
-  background-color: #584cd7;
+  background-color: var(--bg-color);
   width: 100%;
   height: 100%;
   font-size: 18px;
@@ -861,7 +868,7 @@ body.fading {
 }
 
 .user-message {
-  background-color: #584cd7;
+  background-color: var(--bg-color);
   display: flex;
   justify-content: flex-end;
   width: 100%;
@@ -877,19 +884,19 @@ body.fading {
   white-space: pre-wrap;
   text-wrap: wrap;
   word-wrap: break-word;
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
 .ai-message {
-  background-color: #584cd7;
+  background-color: var(--bg-color);
   width: 100%;
   padding-left: 10px;
 
 }
 
 .ai-text {
-  background-color: #756aec;
+  background-color: var(--ai-text-color);
   max-width: 70%;
   border-radius: 0px 20px 20px 20px;
   padding: 10px 20px;
@@ -901,7 +908,7 @@ body.fading {
 }
 
 .bottom-bar {
-  background-color: #584cd7;
+  background-color: var(--bg-color);
   width: 100%;
   position: fixed;
   bottom: 0;
@@ -947,7 +954,7 @@ body.fading {
   white-space: pre-wrap;
   text-wrap: wrap;
   word-wrap: break-word;
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
@@ -960,13 +967,13 @@ body.fading {
   align-content: center;
   overscroll-behavior: none !important;
   border-radius: 0;
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
 .user-input::placeholder {
   position: relative;
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
@@ -992,7 +999,7 @@ body.fading {
 
 .input-button span {
   font-size: 40px;
-  color: #584cd7;
+  color: var(--bg-color);
 
 }
 
@@ -1023,7 +1030,7 @@ body.ai-responding .input-button-container {
 
 .stop-button span {
   font-size: 40px;
-  color: #594acc;
+  color: var(--secondary-color);
 
 }
 
@@ -1034,7 +1041,7 @@ body.ai-responding .stop-button-container {
 
 .user-chat-history-container {
   position: fixed;
-  background-color:#594acc;
+  background-color:var(--secondary-color);
   top: 0;
   bottom: 0;
   right: 70px;
@@ -1056,7 +1063,7 @@ body.ai-responding .stop-button-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color:#594acc;
+  background-color:var(--secondary-color);
   padding: 0 10px;
 
 }
@@ -1074,7 +1081,7 @@ body.ai-responding .stop-button-container {
 }
 
 .chat-history-prompts-container {
-  background-color:#594acc;
+  background-color:var(--secondary-color);
   padding: 0 20px;
   display: flex;
   flex-direction: column;
@@ -1086,7 +1093,7 @@ body.ai-responding .stop-button-container {
 }
 
 .chat-history-prompt {
-  background-color:#594acc;
+  background-color:var(--secondary-color);
   font-size: 18px;
   border-bottom: 2px dashed #ffffff;
 
@@ -1103,7 +1110,7 @@ body.ai-responding .stop-button-container {
 }
 
 .profile-info-logout-container {
-  background-color:#594acc;
+  background-color:var(--secondary-color);
   position: fixed;
   top: 0;
   right: 0;
@@ -1135,7 +1142,7 @@ body.ai-responding .stop-button-container {
 }
 
 .profile-logout-username {
-  background-color:#594acc;
+  background-color:var(--secondary-color);
   display: flex;
   justify-content: center;
   font-size: 23px;
@@ -1145,7 +1152,7 @@ body.ai-responding .stop-button-container {
 }
 
 .logout-button-container {
-  background-color:#594acc;
+  background-color:var(--secondary-color);
   font-size: 18px;
   display: flex;
   justify-content: center;
@@ -1157,8 +1164,23 @@ body.ai-responding .stop-button-container {
   padding: 10px 27px;
   background-color:#ffffff;
   border-radius: 10px;
-  color: #584cd7;
+  color: var(--bg-color);
 
+}
+
+.color-selector-container {
+  background-color:var(--secondary-color);
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.color-selector {
+  padding: 10px 27px;
+  background-color:#ffffff;
+  border-radius: 10px;
+  color: var(--bg-color);
 }
 
 .open-question-button-container {
