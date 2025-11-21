@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToneFlex Test Suite</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #584cd7;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #584cd7;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .test-section {
+            margin-bottom: 30px;
+        }
+
+        .test-section h2 {
+            color: #584cd7;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #584cd7;
+            padding-bottom: 10px;
+        }
+
+        .test-section p {
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        button {
+            background-color: #584cd7;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #594acc;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button.clear-btn {
+            background-color: #594acc;
+        }
+
+        button.clear-btn:hover {
+            background-color: #756aec;
+        }
+
+        button.run-all-btn {
+            background-color: #756aec;
+            font-size: 1.1em;
+            padding: 15px 35px;
+        }
+
+        button.run-all-btn:hover {
+            background-color: #584cd7;
+        }
+
+        .console-container {
+            margin-top: 30px;
+            background: #1e1e1e;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .console-header {
+            background: #2d2d2d;
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .console-output {
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            max-height: 600px;
+            overflow-y: auto;
+            color: #d4d4d4;
+            line-height: 1.6;
+        }
+
+        .console-output:empty::before {
+            content: 'Console output will appear here...';
+            color: #666;
+            font-style: italic;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background-color: #584cd7;
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            color: white;
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+
+        .instructions {
+            background: #f8f9fa;
+            border-left: 4px solid #584cd7;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+
+        .instructions h3 {
+            color: #584cd7;
+            margin-bottom: 10px;
+        }
+
+        .instructions ul {
+            margin-left: 20px;
+            color: #666;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ToneFlex Test Suite</h1>
+            <p>Vanilla JavaScript Testing with Console Output</p>
+        </div>
+
+        <div class="content">
+            <div class="test-section">
+                <h2>Unit Tests</h2>
+                <p>Test individual functions and components in isolation.</p>
+                <div class="button-group">
+                    <button onclick="runTest('test-install-pwa.js')">Test Install PWA</button>
+                    <button onclick="runTest('test-disable-zoom.js')">Test Disable Zoom</button>
+                    <button onclick="runTest('test-login-container.js')">Test Login Container</button>
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h2>Integration Tests</h2>
+                <p>Test how multiple components work together.</p>
+                <div class="button-group">
+                    <button onclick="runTest('test-auth-flow.js')">Test Authentication Flow</button>
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h2>System/E2E Tests</h2>
+                <p>Test complete user workflows from start to finish.</p>
+                <div class="button-group">
+                    <button onclick="runTest('test-e2e-workflows.js')">Test E2E Workflows</button>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="run-all-btn" onclick="runAllTests()">Run All Tests</button>
+                <button class="clear-btn" onclick="clearConsole()">Clear Console</button>
+            </div>
+
+            <div class="console-container">
+                <div class="console-header">
+                    <span>Console Output</span>
+                    <span id="timestamp"></span>
+                </div>
+                <div class="console-output" id="console-output"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Capture console.log output
+        const consoleOutput = document.getElementById('console-output');
+        const originalConsoleLog = console.log;
+        const originalConsoleError = console.error;
+
+        function formatConsoleMessage(message, type = 'log') {
+            const span = document.createElement('span');
+            span.style.display = 'block';
+            span.style.marginBottom = '5px';
+            
+            if (type === 'error') {
+                span.style.color = '#ff6b6b';
+            } else if (message.includes('✅')) {
+                span.style.color = '#51cf66';
+            } else if (message.includes('❌')) {
+                span.style.color = '#ff6b6b';
+            } else if (message.includes('===')) {
+                span.style.color = '#ffd93d';
+                span.style.fontWeight = 'bold';
+            } else if (message.includes('---')) {
+                span.style.color = '#74c0fc';
+            } else if (message.includes('🎯')) {
+                span.style.color = '#ffd93d';
+            }
+            
+            span.textContent = message;
+            return span;
+        }
+
+        console.log = function(...args) {
+            const message = args.join(' ');
+            consoleOutput.appendChild(formatConsoleMessage(message, 'log'));
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            originalConsoleLog.apply(console, args);
+        };
+
+        console.error = function(...args) {
+            const message = args.join(' ');
+            consoleOutput.appendChild(formatConsoleMessage(message, 'error'));
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            originalConsoleError.apply(console, args);
+        };
+
+        function updateTimestamp() {
+            document.getElementById('timestamp').textContent = 
+                new Date().toLocaleTimeString();
+        }
+
+        function runTest(filename) {
+            updateTimestamp();
+            console.log(`\nLoading test file: ${filename}\n`);
+            
+            const script = document.createElement('script');
+            script.src = filename;
+            script.onerror = function() {
+                console.error(`Failed to load test file: ${filename}`);
+                console.error('Make sure the test file is in the same directory as this HTML file.');
+            };
+            document.body.appendChild(script);
+            
+            // Remove script after execution
+            setTimeout(() => {
+                document.body.removeChild(script);
+            }, 1000);
+        }
+
+        function runAllTests() {
+            clearConsole();
+            console.log('Running all tests...\n');
+            
+            const tests = [
+                'test-install-pwa.js',
+                'test-disable-zoom.js',
+                'test-login-container.js',
+                'test-auth-flow.js',
+                'test-e2e-workflows.js'
+            ];
+            
+            let index = 0;
+            function runNext() {
+                if (index < tests.length) {
+                    runTest(tests[index]);
+                    index++;
+                    setTimeout(runNext, 500);
+                } else {
+                    console.log('\nAll tests completed!\n');
+                }
+            }
+            
+            runNext();
+        }
+
+        function clearConsole() {
+            consoleOutput.innerHTML = '';
+            updateTimestamp();
+        }
+
+        // Initial timestamp
+        updateTimestamp();
+    </script>
+</body>
+</html>
