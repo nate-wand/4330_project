@@ -1,3 +1,4 @@
+(function() {
 /**
  * System/End-to-End Tests - Complete User Workflows
  * Run this file in the browser console or include it in your HTML
@@ -519,3 +520,4 @@ if (testsFailed === 0) {
   console.log('⚠️  Some tests failed. Please review the errors above.');
 }
 console.log('\n');
+})();

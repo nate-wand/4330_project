@@ -25,7 +25,7 @@ let reject_button = document.querySelector('.reject-button');
 let accept_button = document.querySelector('.accept-button');
 let color_selector_button = document.querySelector('.color-selector')
 
-let API_KEY = 'AIzaSyCW9Xjjal9wuEPkQsHs1kheMLCLUyc4dNA';
+let API_KEY = 'AIzaSyAHo20Y4aKY8Fe7uAq-R3V0Adj1SUYXn_4';
 let API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
 const PUBLIC_KEY = 'BAHlmlz8s50w0M4xgNet4fLXU3-_7qrmwjN4Qluk3vl2DrMkh_P919ty7eVaRzyhHjMLQ8SrL4iOTiOVmKTM-yI';

@@ -1,3 +1,4 @@
+(function() {
 /**
  * Unit Tests for login-container.js
  * Run this file in the browser console or include it in your HTML
@@ -311,3 +312,4 @@ console.log('✅ Passed:', testsPassed);
 console.log('❌ Failed:', testsFailed);
 console.log('Total:', testsPassed + testsFailed);
 console.log('========================================\n');
+})();

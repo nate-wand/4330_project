@@ -219,9 +219,9 @@
                 <h2>Unit Tests</h2>
                 <p>Test individual functions and components in isolation.</p>
                 <div class="button-group">
-                    <button onclick="runTest('test-install-pwa.js')">Test Install PWA</button>
-                    <button onclick="runTest('test-disable-zoom.js')">Test Disable Zoom</button>
-                    <button onclick="runTest('test-login-container.js')">Test Login Container</button>
+                    <button onclick="runSingleTest('test-install-pwa.js')">Test Install PWA</button>
+                    <button onclick="runSingleTest('test-disable-zoom.js')">Test Disable Zoom</button>
+                    <button onclick="runSingleTest('test-login-container.js')">Test Login Container</button>
                 </div>
             </div>
 
@@ -229,7 +229,7 @@
                 <h2>Integration Tests</h2>
                 <p>Test how multiple components work together.</p>
                 <div class="button-group">
-                    <button onclick="runTest('test-auth-flow.js')">Test Authentication Flow</button>
+                    <button onclick="runSingleTest('test-auth-flow.js')">Test Authentication Flow</button>
                 </div>
             </div>
 
@@ -237,11 +237,14 @@
                 <h2>System/E2E Tests</h2>
                 <p>Test complete user workflows from start to finish.</p>
                 <div class="button-group">
-                    <button onclick="runTest('test-e2e-workflows.js')">Test E2E Workflows</button>
+                    <button onclick="runSingleTest('test-e2e-workflows.js')">Test E2E Workflows</button>
                 </div>
             </div>
 
-            <div class="button-group">
+            <div class="test-section">
+                <h2>Run All Tests</h2>
+                <p>Execute the complete test suite.</p>
+                <div class="button-group">
                 <button class="run-all-btn" onclick="runAllTests()">Run All Tests</button>
                 <button class="clear-btn" onclick="clearConsole()">Clear Console</button>
             </div>
@@ -305,48 +308,77 @@
                 new Date().toLocaleTimeString();
         }
 
+        let currentTestIndex = 0;
+        const allTests = [
+            'test-install-pwa.js',
+            'test-disable-zoom.js',
+            'test-login-container.js',
+            'test-auth-flow.js',
+            'test-e2e-workflows.js'
+        ];
+
+        function runSingleTest(filename) {
+            clearConsole();
+            updateTimestamp();
+            console.log(`\nLoading test file: ${filename}\n`);
+            
+            const script = document.createElement('script');
+            script.src = filename;
+            script.onload = function() {
+                setTimeout(() => {
+                    document.body.removeChild(script);
+                }, 100);
+            };
+            script.onerror = function() {
+                console.error(`FAILED to load test file: ${filename}`);
+                console.error('Make sure the test file is in the same directory as this HTML file.');
+                console.error('Check that the filename is spelled correctly.');
+            };
+            document.body.appendChild(script);
+        }
+
         function runTest(filename) {
             updateTimestamp();
             console.log(`\nLoading test file: ${filename}\n`);
             
             const script = document.createElement('script');
             script.src = filename;
+            script.onload = function() {
+                // Test loaded successfully
+                setTimeout(() => {
+                    document.body.removeChild(script);
+                    runNextTest();
+                }, 100);
+            };
             script.onerror = function() {
                 console.error(`Failed to load test file: ${filename}`);
                 console.error('Make sure the test file is in the same directory as this HTML file.');
+                runNextTest();
             };
             document.body.appendChild(script);
-            
-            // Remove script after execution
-            setTimeout(() => {
-                document.body.removeChild(script);
-            }, 1000);
+        }
+
+        function runNextTest() {
+            currentTestIndex++;
+            if (currentTestIndex < allTests.length) {
+                setTimeout(() => {
+                    runTest(allTests[currentTestIndex]);
+                }, 500);
+            } else {
+                setTimeout(() => {
+                    console.log('\n========================================');
+                    console.log('ALL TESTS COMPLETED');
+                    console.log('========================================\n');
+                    currentTestIndex = 0;
+                }, 500);
+            }
         }
 
         function runAllTests() {
             clearConsole();
             console.log('Running all tests...\n');
-            
-            const tests = [
-                'test-install-pwa.js',
-                'test-disable-zoom.js',
-                'test-login-container.js',
-                'test-auth-flow.js',
-                'test-e2e-workflows.js'
-            ];
-            
-            let index = 0;
-            function runNext() {
-                if (index < tests.length) {
-                    runTest(tests[index]);
-                    index++;
-                    setTimeout(runNext, 500);
-                } else {
-                    console.log('\nAll tests completed!\n');
-                }
-            }
-            
-            runNext();
+            currentTestIndex = 0;
+            runTest(allTests[0]);
         }
 
         function clearConsole() {
