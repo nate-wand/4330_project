@@ -815,6 +815,38 @@ setPersistence(auth, browserLocalPersistence).then(() => {
               }
             });
 
+            const notificationToggle = document.getElementById("notificationToggle"); //Toggle
+
+            if (Notification.permission === "denied"){
+              notificationToggle.disabled = true;
+              console.warn("Notifications are blocked in settings.");
+            }
+
+            notificationToggle.checked = OneSignal.User.PushSubscription.optedIn;
+            notificationToggle.addEventListener("change", async (event) => {
+              if (event.target.checked) {
+                try{
+                  const permission = await OneSignal.Notifications.requestPermission();
+                  if (permission === "granted"){
+                    await OneSignal.User.PushSubscription.optIn();
+                    console.log("Notifications enabled");
+                  } else {
+                    console.warn("Permission not granted");
+                    notificationToggle.checked = false;
+                  }
+                }catch (err) {
+                  console.error("Failed enabling Notifications", err);
+                  notificationToggle.checked = false;
+                }
+              }else {
+                try{
+                  await OneSignal.User.PushSubscription.optOut();
+                  console.log("Notifications disabled");
+                              } catch (err){
+                  console.error("Failed disabling Notifications", err);
+                }
+              }
+            });
             
             async function handleValidSubscription(subscriptionId) {
               if (u_data.sent_welcome) {
@@ -1310,3 +1342,4 @@ logout_button.addEventListener('click', async (e) => {
 
 
 export { bottom_bar };
+
