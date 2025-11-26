@@ -815,7 +815,7 @@ setPersistence(auth, browserLocalPersistence).then(() => {
               }
             });
 
-            const notificationToggle = document.getElementById("notificationToggle"); //Toggle
+            const notificationToggle = document.querySelector("#notificationToggle"); //Toggle
 
             if (Notification.permission === "denied"){
               notificationToggle.disabled = true;
