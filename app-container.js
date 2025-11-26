@@ -741,6 +741,15 @@ const generate_ai_response = async (ai_message, ai_is_done) => {
 }
 
 setPersistence(auth, browserLocalPersistence).then(() => {
+  // Color persistence -Nathan
+  let setColor = parseInt(localStorage.getItem("colorkey"), 10);
+  selectedColor = setColor;
+  if (setColor != null) { 
+    selectedColor = setColor; 
+    document.documentElement.style.setProperty('--bg-color', colorArray[selectedColor][0]);
+    document.documentElement.style.setProperty('--ai-text-color', colorArray[selectedColor][1]);
+    document.documentElement.style.setProperty('--secondary-color', colorArray[selectedColor][2]);
+  }
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       if (window.getComputedStyle(app_container).display === 'none') {
@@ -1283,10 +1292,11 @@ logout_button.addEventListener('click', async (e) => {
       document.documentElement.style.setProperty('--bg-color', colorArray[selectedColor][0]);
       document.documentElement.style.setProperty('--ai-text-color', colorArray[selectedColor][1]);
       document.documentElement.style.setProperty('--secondary-color', colorArray[selectedColor][2]);
-
+      localStorage.setItem("colorkey", selectedColor);
  
     change = true;
   })
 
 
 export { bottom_bar };
+
