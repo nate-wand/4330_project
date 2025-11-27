@@ -815,14 +815,18 @@ setPersistence(auth, browserLocalPersistence).then(() => {
               }
             });
 
+            OneSignal.on('initialized', async () => {
             const notificationToggle = document.querySelector("#notificationToggle"); //Toggle
 
             if (Notification.permission === "denied"){
               notificationToggle.disabled = true;
               console.warn("Notifications are blocked in settings.");
+              return;
             }
 
-            notificationToggle.checked = OneSignal.User.PushSubscription.optedIn;
+            const isOptedIn = await OneSignal.User.PushSubscription.optedIn;
+            notificationToggle.checked = isOptedIn;
+            
             notificationToggle.addEventListener("change", async (event) => {
               if (event.target.checked) {
                 try{
@@ -847,6 +851,7 @@ setPersistence(auth, browserLocalPersistence).then(() => {
                 }
               }
             });
+          });
             
             async function handleValidSubscription(subscriptionId) {
               if (u_data.sent_welcome) {
