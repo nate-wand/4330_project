@@ -275,19 +275,19 @@ function stop_daily_check() {
 }
 
 
-// async function send_user_notification(playerId) {
-//   const response = await fetch("https://pulsar-welcome-message.pmnair04.workers.dev", {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json; charset=utf-8" },
-//     body: JSON.stringify({ playerId: playerId })
-//   });
+async function send_user_notification(playerId) {
+  const response = await fetch("https://4330-welcome-message.pmnair04.workers.dev", {
+    method: "POST",
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+    body: JSON.stringify({ playerId: playerId })
+  });
 
-//   if (!response.ok) {
-//     console.error("Error sending notification:", await response.text());
-//   } else {
-//     console.log("Welcome notification sent ✅");
-//   }
-// }
+  if (!response.ok) {
+    console.error("Error sending notification:", await response.text());
+  } else {
+    console.log("Welcome notification sent ✅");
+  }
+}
 
 // async function send_notification(count) {
 //   const response = await fetch("https://onesignal.com/api/v1/notifications", {
@@ -796,7 +796,7 @@ setPersistence(auth, browserLocalPersistence).then(() => {
           window.OneSignalDeferred = window.OneSignalDeferred || [];
           OneSignalDeferred.push(async function(OneSignal) {
             await OneSignal.init({
-              appId: "18066608-9933-46fd-aecb-9f8b9c12bfc0",
+              appId: "728d0c39-4560-40b9-8d93-be2f8e1b642a",
               autoPrompt: false,
               notifyButton: { enable: false },
               promptOptions: {
@@ -819,7 +819,7 @@ setPersistence(auth, browserLocalPersistence).then(() => {
 
               console.log("📤 Sending welcome notification to:", subscriptionId);
               try {
-                // await send_user_notification(subscriptionId);
+                await send_user_notification(subscriptionId);
                 await updateDoc(user_ref, { sent_welcome: true });
                 u_data.sent_welcome = true;
                 console.log("✅ Welcome notification sent successfully.");
