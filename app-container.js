@@ -24,7 +24,7 @@ let notification_soft_prompt_container = document.querySelector('.notification-s
 let reject_button = document.querySelector('.reject-button');
 let accept_button = document.querySelector('.accept-button');
 
-let API_KEY = 'AIzaSyCW9Xjjal9wuEPkQsHs1kheMLCLUyc4dNA';
+let API_KEY = '';
 let API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
 const PUBLIC_KEY = 'BAHlmlz8s50w0M4xgNet4fLXU3-_7qrmwjN4Qluk3vl2DrMkh_P919ty7eVaRzyhHjMLQ8SrL4iOTiOVmKTM-yI';
@@ -654,9 +654,57 @@ const create_message = (type) => {
   let p = document.createElement('p');
   p.classList.add(`${type}-text`);
   div.appendChild(p);
+  /*--Changed by Jonathan */
+  // Copy button added to the end to AI response messages
+  if (type === "ai") {
+    let copyBtn = document.createElement('button');
+    copyBtn.classList.add('copy-btn');
+    copyBtn.textContent = "Copy";
+    // copy functionality
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(p.textContent)
+        .then(() => {
+          copyBtn.textContent = "Copied!";
+          setTimeout(() => copyBtn.textContent = "Copy", 1500);
+        })
+        .catch(err => {
+          console.error("Failed to copy:", err);
+        });
+    });
+    div.appendChild(copyBtn);
+  }
   return div;
-
 };
+
+//  Re-add copy buttons to previously loaded AI messages when the app reloads
+window.addEventListener("DOMContentLoaded", () => {
+  const aiMessageDivs = document.querySelectorAll(".ai-message");
+
+  aiMessageDivs.forEach(div => {
+    const p = div.querySelector(".ai-text");
+
+    // Prevent duplicate buttons if one already exists in message area
+    if (div.querySelector(".copy-btn")) return;
+
+    let copyBtn = document.createElement('button');
+    copyBtn.classList.add('copy-btn');
+    copyBtn.textContent = "Copy";
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(p.textContent)
+        .then(() => {
+          copyBtn.textContent = "Copied!";
+          setTimeout(() => copyBtn.textContent = "Copy", 1500);
+        })
+        .catch(err => console.error("Failed to copy:", err));
+    });
+
+    div.appendChild(copyBtn);
+  });
+});
+
+
+
 
 const htmlToMarkdown = (html) => {
   if (!html) return '';
