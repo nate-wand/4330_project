@@ -676,6 +676,34 @@ const create_message = (type) => {
   return div;
 };
 
+//  Re-add copy buttons to previously loaded AI messages when the app reloads
+window.addEventListener("DOMContentLoaded", () => {
+  const aiMessageDivs = document.querySelectorAll(".ai-message");
+
+  aiMessageDivs.forEach(div => {
+    const p = div.querySelector(".ai-text");
+
+    // Prevent duplicate buttons if one already exists in message area
+    if (div.querySelector(".copy-btn")) return;
+
+    let copyBtn = document.createElement('button');
+    copyBtn.classList.add('copy-btn');
+    copyBtn.textContent = "Copy";
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(p.textContent)
+        .then(() => {
+          copyBtn.textContent = "Copied!";
+          setTimeout(() => copyBtn.textContent = "Copy", 1500);
+        })
+        .catch(err => console.error("Failed to copy:", err));
+    });
+
+    div.appendChild(copyBtn);
+  });
+});
+
+
 
 
 const htmlToMarkdown = (html) => {
