@@ -655,7 +655,7 @@ const create_message = (type) => {
   p.classList.add(`${type}-text`);
   div.appendChild(p);
   /*--Changed by Jonathan */
-  // Copy button should ONLY be added to AI messages
+  // Copy button added to the end to AI response messages
   if (type === "ai") {
     let copyBtn = document.createElement('button');
     copyBtn.classList.add('copy-btn');
