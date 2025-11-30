@@ -23,12 +23,14 @@ let open_question_button = document.querySelector('.open-question-button');
 let notification_soft_prompt_container = document.querySelector('.notification-soft-prompt-container');
 let reject_button = document.querySelector('.reject-button');
 let accept_button = document.querySelector('.accept-button');
+let color_selector_button = document.querySelector('.color-selector')
 
-let API_KEY = '';
+let API_KEY = 'AIzaSyCW9Xjjal9wuEPkQsHs1kheMLCLUyc4dNA';
 let API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
 const PUBLIC_KEY = 'BAHlmlz8s50w0M4xgNet4fLXU3-_7qrmwjN4Qluk3vl2DrMkh_P919ty7eVaRzyhHjMLQ8SrL4iOTiOVmKTM-yI';
-
+const colorArray = [['#584cd7', '#756aec', '#594acc'] , ['#0B6623', '#638438', '#0C6418'], ['#CA3433', '#FF5248', '#CB3228'], ['#737000', '#CC8E15', '#746E00']];
+let selectedColor = 0;
 let typing_interval, abort_controller;
 let knowledge_base = {
   parts: [{
@@ -273,19 +275,19 @@ function stop_daily_check() {
 }
 
 
-async function send_user_notification(playerId) {
-  const response = await fetch("https://4330-welcome-message.pmnair04.workers.dev", {
-    method: "POST",
-    headers: { "Content-Type": "application/json; charset=utf-8" },
-    body: JSON.stringify({ playerId: playerId })
-  });
+// async function send_user_notification(playerId) {
+//   const response = await fetch("https://pulsar-welcome-message.pmnair04.workers.dev", {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json; charset=utf-8" },
+//     body: JSON.stringify({ playerId: playerId })
+//   });
 
-  if (!response.ok) {
-    console.error("Error sending notification:", await response.text());
-  } else {
-    console.log("Welcome notification sent ✅");
-  }
-}
+//   if (!response.ok) {
+//     console.error("Error sending notification:", await response.text());
+//   } else {
+//     console.log("Welcome notification sent ✅");
+//   }
+// }
 
 // async function send_notification(count) {
 //   const response = await fetch("https://onesignal.com/api/v1/notifications", {
@@ -654,57 +656,9 @@ const create_message = (type) => {
   let p = document.createElement('p');
   p.classList.add(`${type}-text`);
   div.appendChild(p);
-  /*--Changed by Jonathan */
-  // Copy button added to the end to AI response messages
-  if (type === "ai") {
-    let copyBtn = document.createElement('button');
-    copyBtn.classList.add('copy-btn');
-    copyBtn.textContent = "Copy";
-    // copy functionality
-    copyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(p.textContent)
-        .then(() => {
-          copyBtn.textContent = "Copied!";
-          setTimeout(() => copyBtn.textContent = "Copy", 1500);
-        })
-        .catch(err => {
-          console.error("Failed to copy:", err);
-        });
-    });
-    div.appendChild(copyBtn);
-  }
   return div;
+
 };
-
-//  Re-add copy buttons to previously loaded AI messages when the app reloads
-window.addEventListener("DOMContentLoaded", () => {
-  const aiMessageDivs = document.querySelectorAll(".ai-message");
-
-  aiMessageDivs.forEach(div => {
-    const p = div.querySelector(".ai-text");
-
-    // Prevent duplicate buttons if one already exists in message area
-    if (div.querySelector(".copy-btn")) return;
-
-    let copyBtn = document.createElement('button');
-    copyBtn.classList.add('copy-btn');
-    copyBtn.textContent = "Copy";
-
-    copyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(p.textContent)
-        .then(() => {
-          copyBtn.textContent = "Copied!";
-          setTimeout(() => copyBtn.textContent = "Copy", 1500);
-        })
-        .catch(err => console.error("Failed to copy:", err));
-    });
-
-    div.appendChild(copyBtn);
-  });
-});
-
-
-
 
 const htmlToMarkdown = (html) => {
   if (!html) return '';
@@ -787,7 +741,16 @@ const generate_ai_response = async (ai_message, ai_is_done) => {
 
 }
 
+
 setPersistence(auth, browserLocalPersistence).then(() => {
+  let setColor = parseInt(localStorage.getItem("colorkey"), 10);
+  if (!(isNaN(setColor))) {
+    selectedColor = setColor;
+    document.documentElement.style.setProperty('--bg-color', colorArray[selectedColor][0]);
+    document.documentElement.style.setProperty('--ai-text-color', colorArray[selectedColor][1]);
+    document.documentElement.style.setProperty('--secondary-color', colorArray[selectedColor][2]);
+  }
+
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       if (window.getComputedStyle(app_container).display === 'none') {
@@ -800,7 +763,7 @@ setPersistence(auth, browserLocalPersistence).then(() => {
       }
 
       const user_ref = doc(db, 'users', user.uid);
-
+      
       let u_data;
       while (true) {
         const docSnapshot = await getDoc(user_ref);
@@ -833,7 +796,7 @@ setPersistence(auth, browserLocalPersistence).then(() => {
           window.OneSignalDeferred = window.OneSignalDeferred || [];
           OneSignalDeferred.push(async function(OneSignal) {
             await OneSignal.init({
-              appId: "728d0c39-4560-40b9-8d93-be2f8e1b642a",
+              appId: "18066608-9933-46fd-aecb-9f8b9c12bfc0",
               autoPrompt: false,
               notifyButton: { enable: false },
               promptOptions: {
@@ -856,7 +819,7 @@ setPersistence(auth, browserLocalPersistence).then(() => {
 
               console.log("📤 Sending welcome notification to:", subscriptionId);
               try {
-                await send_user_notification(subscriptionId);
+                // await send_user_notification(subscriptionId);
                 await updateDoc(user_ref, { sent_welcome: true });
                 u_data.sent_welcome = true;
                 console.log("✅ Welcome notification sent successfully.");
@@ -1292,5 +1255,44 @@ logout_button.addEventListener('click', async (e) => {
   }
 
 });
+
+  color_selector_button.addEventListener('click', async (e) => {
+    //console.log("Color selector clicked");
+    
+    //const colorArray = [['#584cd7', '#756aec', '#594acc'] , ['#0B6623', '#638438', '#0C6418'], ['#CA3433', '#FF5248', '#CB3228'], ['#737000', '#CC8E15', '#746E00']];
+    // Main bg color, ai-message color, seecondary color
+    let change = true;
+    //console.log(colorArray[0][0]);
+    
+    // const getValue = (elem, property) => 
+    // window.getComputedStyle(elem, null)
+    //     .getPropertyValue(property);
+
+    //const user_message_color = document.querySelector('.user-message');
+
+    //document.querySelectorAll('*').forEach((elem) => {
+      // const backgroundColor = getValue(elem, 'background-color');
+      // const color = getValue(elem, 'color');
+
+      if(change)
+      {
+        if (selectedColor >= colorArray.length - 1) { 
+          selectedColor = 0;
+        }   
+        else {
+        selectedColor += 1; 
+        }
+
+        //console.log(selectedColor);
+        change = false;
+      }
+      
+      document.documentElement.style.setProperty('--bg-color', colorArray[selectedColor][0]);
+      document.documentElement.style.setProperty('--ai-text-color', colorArray[selectedColor][1]);
+      document.documentElement.style.setProperty('--secondary-color', colorArray[selectedColor][2]);
+      localStorage.setItem("colorkey", selectedColor);
+  
+    change = true;
+  })
 
 export { bottom_bar };
