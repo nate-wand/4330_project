@@ -24,6 +24,10 @@ let notification_soft_prompt_container = document.querySelector('.notification-s
 let reject_button = document.querySelector('.reject-button');
 let accept_button = document.querySelector('.accept-button');
 let color_selector_button = document.querySelector('.color-selector')
+let purple_button = document.querySelector('.purple-button');
+let green_button = document.querySelector('.green-button');
+let red_button = document.querySelector('.red-button');
+let yellow_button = document.querySelector('.yellow-button');
 
 let API_KEY = '';
 let API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
@@ -1303,44 +1307,38 @@ logout_button.addEventListener('click', async (e) => {
   }
 
 });
+function changeColor() {
+    document.documentElement.style.setProperty('--bg-color', colorArray[selectedColor][0]);
+    document.documentElement.style.setProperty('--ai-text-color', colorArray[selectedColor][1]);
+    document.documentElement.style.setProperty('--secondary-color', colorArray[selectedColor][2]);
+    localStorage.setItem("colorkey", selectedColor);
+  }
 
-color_selector_button.addEventListener('click', async (e) => {
-    //console.log("Color selector clicked");
+   purple_button.addEventListener('click', async (e) => {
+    selectedColor = 0;
+    changeColor();
+  });
+
+  green_button.addEventListener('click', async (e) => {
+    selectedColor = 1;
+    changeColor();
+  });
+
+  red_button.addEventListener('click', async (e) => {
+    selectedColor = 2;
+    changeColor();
+  });
+
+  yellow_button.addEventListener('click', async (e) => {
+    selectedColor = 3;
+    changeColor();
+  });
+
+
+  color_selector_button.addEventListener('click', async (e) => {
+
+    document.getElementById("dropdown").classList.toggle("show");
     
-    //const colorArray = [['#584cd7', '#756aec', '#594acc'] , ['#0B6623', '#638438', '#0C6418'], ['#CA3433', '#FF5248', '#CB3228'], ['#737000', '#CC8E15', '#746E00']];
-    // Main bg color, ai-message color, seecondary color
-    let change = true;
-    //console.log(colorArray[0][0]);
-    
-    // const getValue = (elem, property) => 
-    // window.getComputedStyle(elem, null)
-    //     .getPropertyValue(property);
-
-    //const user_message_color = document.querySelector('.user-message');
-
-    //document.querySelectorAll('*').forEach((elem) => {
-      // const backgroundColor = getValue(elem, 'background-color');
-      // const color = getValue(elem, 'color');
-
-      if(change)
-      {
-        if (selectedColor >= colorArray.length - 1) { 
-          selectedColor = 0;
-        }   
-        else {
-        selectedColor += 1; 
-        }
-
-        //console.log(selectedColor);
-        change = false;
-      }
-      
-      document.documentElement.style.setProperty('--bg-color', colorArray[selectedColor][0]);
-      document.documentElement.style.setProperty('--ai-text-color', colorArray[selectedColor][1]);
-      document.documentElement.style.setProperty('--secondary-color', colorArray[selectedColor][2]);
-      localStorage.setItem("colorkey", selectedColor);
-  
-    change = true;
-  })
+  });
 
 export { bottom_bar };

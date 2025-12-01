@@ -1198,6 +1198,60 @@ body.ai-responding .stop-button-container {
   align-items: center;
 }
 
+.color-button {
+  padding: 10px 27px;
+  background-color:#ffffff;
+  border-radius: 10px;
+  color: var(--bg-color);
+}
+
+.purple-button {
+  padding: 10px 27px;
+  background-color:#ffffff;
+  border-radius: 10px;
+  color:  #584cd7;
+}
+
+.green-button {
+  padding: 10px 27px;
+  background-color:#ffffff;
+  border-radius: 10px;
+  color:  #0B6623;
+}
+
+.red-button {
+  padding: 10px 27px;
+  background-color:#ffffff;
+  border-radius: 10px;
+  color:  #CA3433;
+}
+
+.yellow-button {
+  padding: 10px 27px;
+  background-color:#ffffff;
+  border-radius: 10px;
+  color:  #737000;
+}
+
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.show { display: block; }
+
 .color-selector {
   padding: 10px 27px;
   background-color:#ffffff;
