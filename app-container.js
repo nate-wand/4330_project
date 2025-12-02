@@ -812,7 +812,7 @@ setPersistence(auth, browserLocalPersistence).then(() => {
               promptOptions: {
                 slidedown: { enabled: false },
                 welcomeNotification: { enabled: false },
-              },
+              }
             });
 
             await OneSignal.login(user.uid);
@@ -1349,4 +1349,5 @@ logout_button.addEventListener('click', async (e) => {
 
 
 export { bottom_bar };
+
 
