@@ -18,14 +18,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-    <!-- <script>
+    <script>
       window.OneSignalDeferred = window.OneSignalDeferred || [];
       OneSignalDeferred.push(async function(OneSignal) {
         await OneSignal.init({
           appId: "18066608-9933-46fd-aecb-9f8b9c12bfc0",
+          allowLocalhostAsSecureOrigin: true // allows testing on Mac
         });
       });
-    </script> -->
+    </script>
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -422,14 +423,15 @@
 
         <!--Notification Toggle-->
         <div class ="notification-toggle-container">
-          <label class="notification-toggle">
+          <label class="notification-toggle" for="notificationToggle">
           Enable Notifications
 
-            <span class="switch">
+            <div class="switch">
             <input type="checkbox" id="notificationToggle">
             <span class="slider"></span>
-            </span>
-          </label>
+            </div>
+
+        </label>
         </div>
 
         <!--Color change button -Nathan -->

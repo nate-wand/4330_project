@@ -812,8 +812,10 @@ setPersistence(auth, browserLocalPersistence).then(() => {
               promptOptions: {
                 slidedown: { enabled: false },
                 welcomeNotification: { enabled: false },
-              }
+              },
             });
+
+            await OneSignal.login(user.uid);
 
             OneSignal.on('initialized', async () => {
             const notificationToggle = document.querySelector("#notificationToggle"); //Toggle
@@ -826,7 +828,7 @@ setPersistence(auth, browserLocalPersistence).then(() => {
 
             const isOptedIn = await OneSignal.User.PushSubscription.optedIn;
             notificationToggle.checked = isOptedIn;
-            
+
             notificationToggle.addEventListener("change", async (event) => {
               if (event.target.checked) {
                 try{

@@ -1211,6 +1211,10 @@ body.ai-responding .stop-button-container {
   gap: 15px;
 }
 
+.toggle-text {
+  font-weight: 500;
+}
+
 .switch{
   position: relative;
   display: inline-flex;
